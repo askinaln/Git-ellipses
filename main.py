@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from random import randrange
 from PyQt5 import uic
 
@@ -14,11 +14,11 @@ class Example(QMainWindow):
         self.pushButton.clicked.connect(self.update)
 
         self.qp = QPainter()
-        self.sit = False
+        self.fl = False
         self.d = None
 
     def paintEvent(self, event):
-        self.sit = True
+        self.fl = True
         qp = QPainter()
         qp.begin(self)
         self.draw_flag(qp)
@@ -29,7 +29,7 @@ class Example(QMainWindow):
         d = randrange(100)
         qp.setBrush(QColor(255, 255, 0))
         qp.drawEllipse(x, y, x + d, x + d)
-        self.sit = False
+        self.fl = False
 
 
 if __name__ == '__main__':
