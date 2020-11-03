@@ -1,15 +1,26 @@
 import sys
 
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 from random import randrange
-from PyQt5 import uic
 
 
-class Example(QMainWindow):
+class Inter(QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi('untitled.ui', self)
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(300, 300, 700, 700)
+        self.setWindowTitle('Окружности')
+
+        self.pushButton = QPushButton('Нарисовать круг!', self)
+        self.pushButton.move(320, 640)
+
+
+class Example(Inter):
+    def __init__(self):
+        super().__init__()
 
         self.pushButton.clicked.connect(self.update)
 
@@ -27,7 +38,7 @@ class Example(QMainWindow):
     def draw_flag(self, qp):
         x, y = randrange(600), randrange(600)
         d = randrange(100)
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randrange(255), randrange(255), randrange(255)))
         qp.drawEllipse(x, y, x + d, x + d)
         self.fl = False
 
